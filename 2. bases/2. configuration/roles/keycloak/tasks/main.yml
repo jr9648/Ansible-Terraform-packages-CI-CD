@@ -1,0 +1,25 @@
+---
+- name: update
+  shell: apt update -y
+
+- name: installing zip
+  shell: apt install unzip -y
+
+- name: installing dependecies_1
+  shell: apt install default-jdk -y
+
+- name: installing dependecies_1
+  shell: apt install default-jre -y
+
+- name: downloading keycloak
+  shell: wget https://github.com/keycloak/keycloak/releases/download/21.1.1/keycloak-21.1.1.zip
+
+- name: setting keycloak
+  shell: unzip keycloak-21.1.1.zip
+
+- name: admin
+  shell: export KEYCLOAK_ADMIN=admin
+
+- name: password
+  shell: export KEYCLOAK_ADMIN_PASSWORD=password
+

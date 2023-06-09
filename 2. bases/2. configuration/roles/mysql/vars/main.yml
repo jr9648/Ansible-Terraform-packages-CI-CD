@@ -1,0 +1,4 @@
+---
+db_user: barelab
+db_pass: password
+db_name: instantpost

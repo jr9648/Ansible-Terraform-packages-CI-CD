@@ -1,0 +1,3 @@
+---
+- include_tasks: apache-php.yml
+- include_tasks: wordpress.yml

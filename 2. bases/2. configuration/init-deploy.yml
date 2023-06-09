@@ -1,0 +1,35 @@
+---
+- name: Configure gitlab LXC
+  hosts: 192.168.1.81
+  become: yes
+  tasks:
+    - name: gitlab
+      include_role:
+        name: gitlab
+
+- name: Configure jenkins LXC
+  hosts: 192.168.1.82
+  become: yes
+  tasks:
+    - name: jenkins
+      include_role:
+        name: jenkins
+
+- name: Configure keycloak LXC
+  hosts: 192.168.1.83
+  become: yes
+  tasks:
+    - name: keycloak
+      include_role:
+        name: keycloak
+
+- name: Setup Mysql with instantpost db
+  become: yes
+  hosts: 192.168.1.84
+  tasks:
+    - name: mysql
+      include_role:
+        name: mysql
+
+
+

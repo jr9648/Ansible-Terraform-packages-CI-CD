@@ -1,0 +1,33 @@
+- name: Download and Extract WorPress
+  unarchive:
+    src: https://wordpress.org/latest.tar.gz
+    dest: /var/www/
+    remote_src: yes
+
+- name: Update default Apache site
+  lineinfile:
+    path: /etc/apache2/sites-enabled/000-default.conf
+    state: present
+    regexp: '(.)+DocumentRoot /var/www/html'
+    line: 'DocumentRoot /var/www/wordpress'
+
+- name: Restart Apache
+  service:
+    name: apache2
+    state: restarted
+
+- name: Copy sample config file
+  command: mv /var/www/wordpress/wp-config-sample.php /var/www/wordpress/wp-config.php
+
+- name: Update ownership to Apache user
+  file:
+    path: /var/www/wordpress/
+    state: directory
+    recurse: yes
+    owner: root
+
+- name: Set the correct permissions on Wordpress directories
+  command: find /var/www/wordpress/ -type d -exec chmod 777 {} \;
+
+- name: Set the correct permissions for Wordpress files
+  command: find /var/www/wordpress/ -type f -exec chmod 777 {} \;

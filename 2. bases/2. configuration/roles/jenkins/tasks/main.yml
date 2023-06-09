@@ -1,0 +1,24 @@
+---
+- name: apt update
+  shell: apt update -y
+
+- name: install curl
+  shell: apt install curl -y
+
+- name: install java_1
+  shell: apt install default-jdk -y
+
+- name: install java_2
+  shell: apt install default-jre -y
+
+- name: getting repo
+  shell: curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key | tee \ /usr/share/keyrings/jenkins-keyring.asc > /dev/null
+
+- name: binary
+  shell: echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \ https://pkg.jenkins.io/debian-stable binary/ | tee \ /etc/apt/sources.list.d/jenkins.list > /dev/null
+
+- name: starting installation
+  shell: apt-get update -y
+
+- name: installing jenkins
+  shell: apt-get install jenkins -y

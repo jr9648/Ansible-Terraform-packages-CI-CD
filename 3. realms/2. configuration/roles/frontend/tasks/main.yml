@@ -1,0 +1,29 @@
+---
+- name: Intalling dependencies
+  apt:
+    name: git
+    state: present
+
+- name: Installing apache2
+  apt:
+    name: apache2
+    state: latest
+
+- name: Updating settings
+  lineinfile:
+    path: /etc/apache2/sites-available/000-default.conf
+    regexp: "DocumentRoot /var/www/html"
+    line: "DocumentRoot /var/www/dist"
+    state: present
+
+- name: deploying site
+  shell: mkdir /var/www/dist
+
+- name: deploying site
+  shell: git init /var/www/dist
+
+- name: deploying site
+  shell: git config --global user.name "jr9648" /var/www/dist
+
+- name: deploying site
+  shell: git config --global user.email "jr9648@gmail.com" /var/www/dist

@@ -1,0 +1,21 @@
+---
+- name: update
+  shell: apt update -y
+
+- name: setting language
+  shell: localectl set-locale LANG=en_US.UTF-8
+
+- name: installing certificates and dependencies
+  shell: apt install -y ca-certificates curl openssh-server postfix tzdata perl
+
+- name: downloading gitlab script
+  shell: curl -LO https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.deb.sh
+
+- name: running script
+  shell: bash script.deb.sh -y
+
+- name: Downloading and Installing Gitlab-CE (EST 8 min)
+  shell: EXTERNAL_URL="http://192.168.1.81" apt-get install gitlab-ce -y
+
+- name: starting gitlab
+  shell: gitlab-ctl reconfigure

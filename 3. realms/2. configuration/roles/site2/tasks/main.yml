@@ -1,0 +1,13 @@
+---
+- name: deploying site
+  shell: git remote add origin "https://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@github.com/jr9648/dist2.git"
+  args:
+    chdir: "/var/www/dist"
+
+- name: deploying site
+  shell: git pull origin main
+  args:
+    chdir: "/var/www/dist"
+
+- name: restarting apache
+  shell: systemctl restart apache2

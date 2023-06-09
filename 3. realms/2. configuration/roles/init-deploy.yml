@@ -1,0 +1,52 @@
+---
+- name: Configure haproxy LXC
+  hosts: 192.168.1.93
+  become: yes
+  tasks:
+    - name: haproxy
+      include_role:
+        name: haproxy
+
+- name: Configure slave-b and slave-f LXC
+  hosts: 192.168.1.94
+         192.168.1.95
+  become: yes
+  tasks:
+    - name: slave-b
+      include_role:
+        name: slave-b
+
+- name: Configure wordpress LXC
+  hosts: 192.168.1.96
+  become: yes
+  tasks:
+    - name: wordpress
+      include_role:
+        name: wordpress
+
+- name: setting frontends
+  hosts: 192.168.1.91
+         192.168.1.92
+  become: yes
+  tasks:
+    - name: frontend
+      include_role:
+        name: frontend
+
+- name: deploying site1
+  hosts: 192.168.1.91
+  become: yes
+  tasks:
+    - name: site1
+      include_role:
+        name: site1
+
+- name: deploying site2
+  hosts: 192.168.1.92
+  become: yes
+  tasks:
+    - name: site2
+      include_role:
+        name: site2
+
+

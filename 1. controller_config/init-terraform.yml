@@ -1,0 +1,16 @@
+---
+- name: Initialising System
+  hosts: localhost
+  become: yes
+  tasks:
+    - name: Setting repos
+      include_roles:
+        name: system
+
+- name: Initialising Localhost
+  hosts: localhost
+  become: yes
+  tasks:
+    - name: Setting terraform
+      include_roles:
+        name: terraform
